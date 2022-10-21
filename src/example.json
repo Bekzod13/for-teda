@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "670c65a2-f584-48b2-9e93-17770b1fa0ec",
+		"name": "profitmodel-mini",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19064802"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Mac",
+									"description": "Mahsulot nomi",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Ajoyib nout",
+									"description": "Mahsulot haqida",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "0",
+									"description": "Chegirma foizda",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"description": "Kategoriya \"id\" si, \"/category\"",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "1",
+									"description": "Brand \"id\" si, \"/brand\"",
+									"type": "text"
+								},
+								{
+									"key": "measurementId",
+									"value": "1",
+									"description": "O'lchov birligi \"id\" si, \"/measurement\"",
+									"type": "text"
+								},
+								{
+									"key": "codeList[0]",
+									"value": "121331",
+									"description": "Mahsulot shtrix kodi. U array boladi",
+									"type": "text"
+								},
+								{
+									"key": "priceList[0].type",
+									"value": "SALE",
+									"description": "Narx turi",
+									"type": "text"
+								},
+								{
+									"key": "priceList[0].price",
+									"value": "10000",
+									"description": "Narxning turiga mos qiymati",
+									"type": "text"
+								},
+								{
+									"key": "photos[0]",
+									"description": "Rasmlar arrayi",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://profitmodel-server.herokuapp.com/api/product",
+							"protocol": "https",
+							"host": [
+								"profitmodel-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+99897\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://profitmodel-server.herokuapp.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"profitmodel-server",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NjYyODI5NzYsImV4cCI6MTY5MjIwMjk3Niwic3ViIjoiKzk5ODk3In0.6cOc4EVSdYBsrOlHX_I2ubkzetPgKdva-j9hJRfKxDV7IiKu9dw4fJFDmaWZtQjKARB7RChRyheywBMjlJkVdg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
