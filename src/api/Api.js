@@ -6,7 +6,7 @@ const baseUrl = 'https://profitmodel-server.herokuapp.com/api/';
 const Api = axios.create({
     baseURL: baseUrl,
     headers: {
-        Authorization : `Bearer ${localStorage.getItem("token")}`
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
     }
 });
 

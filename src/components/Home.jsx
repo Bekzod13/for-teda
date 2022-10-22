@@ -1,58 +1,49 @@
-// import axios from 'axios';
-import {useEffect, useState} from 'react'
-import Api from '../api/Api';
+import { useContext } from 'react';
+import Context from '../context/Context';
+import {useNavigate} from 'react-router-dom';
+
+
+// import component
+import Title from './Title';
+
+// import icons
+import {BsTrash} from 'react-icons/bs';
+import {BiEdit} from 'react-icons/bi';
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(()=>{
-    Api.get('product')
-      .then(res=>{
-        setProducts(res.data.data)
-      })
-      .catch(err=>{
-        console.log(err);
-      })
-  },[]);
-
-  console.log(products);
+  
+  const navigate = useNavigate();
+  const baseUrl = 'https://profitmodel-server.herokuapp.com/api/';
+  const {products, setDeleteId} = useContext(Context);
+  
+  const deleteProduct = (id) => {
+    navigate('/delete')
+    setDeleteId(id);
+  
+  }
 
   return (
     <>
-    <h1 className="home-title">Dashboard</h1>
-    <div className='container'>
-      <table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            products.length === 0 ? 
-            <h2>No items</h2>:
-            products.map(item=>(
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td><img src={`https://profitmodel-server.herokuapp.com/api/product/${item.id}/photo/${item.id * 2}`} style={{width:"100px", height:"100px", objectFit:'contain'}} alt={item.name} /></td>
-                <td>{item.name}</td>
-                <td>{item.category.name}</td>
-                <td>${item.priceList[0].price}</td>
-                <td>
-                  <button type="button" class="btn btn-success">Edit</button>
-                  <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-    </div>
+      <Title title={"Dashboard"} />
+      <div className='container home-table'>
+        <div className="new-product">Add Product</div>
+        {
+          products.length === 0 ? <h1>No Products</h1>:
+          products.map((item, index)=>(
+            <div className="home-item" key={item.id}>
+              <div className="home-item-img">
+                <img src={`${baseUrl}product/${item.id}/photo/${item.id * 2}`} alt={item.name} />
+              </div>
+              <div className="home-item-title">{item.name}</div>
+              <div className="home-item-price">${item.priceList[0].realPrice}</div>
+              <div className="home-item-actions">
+                <div className="home-item-delete" onClick={()=>deleteProduct(item.id)}><BsTrash/></div>
+                <div className="home-item-edit"><BiEdit/></div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </>
   )
 }

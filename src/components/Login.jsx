@@ -1,10 +1,10 @@
-import axios from 'axios';
 import {useContext, useState} from 'react';
 import Context from '../context/Context';
 
 // import icons
 import {BsEyeSlash, BsEye} from 'react-icons/bs';
 import {FiSun, FiMoon} from 'react-icons/fi';
+import Api from '../api/Api';
 
 const Login = () => {
 
@@ -20,9 +20,9 @@ const Login = () => {
         })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        axios.post('https://profitmodel-server.herokuapp.com/api/auth/login', {
+        await Api.post('auth/login', {
             phone: values.login,
             password: values.password
         })
@@ -43,6 +43,7 @@ const Login = () => {
                 }
             </div>
             <main className="login">
+                <h1>Log In</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="login-form">
                         <input placeholder='Login' type="text" onChange={e => setValues({...values, login: e.target.value })}/>
@@ -54,11 +55,11 @@ const Login = () => {
                                 : "password"}
                                 placeholder="Password"
                                 onChange={e => setValues({...values, password: e.target.value })}/>
-                        <span onClick={showPasswordOn}>
+                        <span className='show-eye' onClick={showPasswordOn}>
                             {
                                 values.showPassword ?
-                                <BsEye/>:
-                                <BsEyeSlash/>
+                                <BsEyeSlash/>:
+                                <BsEye/>
 
                             }
                         </span>
