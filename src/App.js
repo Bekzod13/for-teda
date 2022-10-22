@@ -9,13 +9,16 @@ import Context from "./context/Context";
 
 function App() {
 
-  const [token, setToken] = useState( localStorage.getItem('token') || "")
+  const [dark, setDark] = useState(false);
+  const [token, setToken] = useState( localStorage.getItem('token') || "");
 
+  dark ? (document.body.className = 'dark') : (document.body.className = '');
 
-  
   const contextValue ={
     token,
-    setToken
+    setToken,
+    dark, 
+    setDark
   };
 
   return (
@@ -24,8 +27,10 @@ function App() {
       <Navbar/>
         <Routes>
           {
-            token !== '' ? 
-            <Route path="/" element={<Home/>} />:
+            token !== '' ? (
+            <Route path="/" element={<Home/>} />
+            )
+            :
             <Route path="*" element={<Login/>} />
           }
         </Routes>

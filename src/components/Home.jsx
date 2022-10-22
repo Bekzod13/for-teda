@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-    <h1 className="text-center">Dashboard</h1>
+    <h1 className="home-title">Dashboard</h1>
     <div className='container'>
       <table class="table table-dark table-striped">
         <thead>

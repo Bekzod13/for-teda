@@ -2,9 +2,13 @@ import axios from 'axios';
 import {useContext, useState} from 'react';
 import Context from '../context/Context';
 
+// import icons
+import {BsEyeSlash, BsEye} from 'react-icons/bs';
+import {FiSun, FiMoon} from 'react-icons/fi';
+
 const Login = () => {
 
-    const {setToken} = useContext(Context);
+    const {setToken, setDark, dark} = useContext(Context);
     const [values, setValues] = useState(
         {login: "", password: "", showPassword: false}
     );
@@ -30,36 +34,36 @@ const Login = () => {
     }
 
     return (
-        <div className="container">
-            <main className="form-signin w-100 m-auto">
+        <div className="login-container">
+            <div className="dark-btn" onClick={()=>setDark(!dark)}>
+                {
+                    dark ? 
+                    <FiSun/>:
+                    <FiMoon/>
+                }
+            </div>
+            <main className="login">
                 <form onSubmit={handleSubmit}>
-                    <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-
-                    <div className="form-floating">
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="floatingInput"
-                            placeholder="Log In"
-                            onChange={e => setValues({...values, login: e.target.value })}/>
-                        <label forhtml="floatingInput">Log In</label>
+                    <div className="login-form">
+                        <input placeholder='Login' type="text" onChange={e => setValues({...values, login: e.target.value })}/>
                     </div>
-                    <div className="form-floating">
+                    <div className="login-form">
                         <input
                             type={values.showPassword
                                 ? "text"
                                 : "password"}
-                            className="form-control"
-                            id="floatingPassword"
-                            placeholder="Password"
-                            onChange={e => setValues({...values, password: e.target.value })}/>
-                        <button
-                            type='button'
-                            className='w-100 btn btn-lg btn-info mt-3'
-                            onClick={showPasswordOn}>show password</button>
-                        <label forhtml="floatingPassword">Password</label>
+                                placeholder="Password"
+                                onChange={e => setValues({...values, password: e.target.value })}/>
+                        <span onClick={showPasswordOn}>
+                            {
+                                values.showPassword ?
+                                <BsEye/>:
+                                <BsEyeSlash/>
+
+                            }
+                        </span>
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
+                    <button className="login-btn" type="submit">Sign in</button>
                 </form>
             </main>
         </div>
