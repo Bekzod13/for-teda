@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Context from '../context/Context';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 
 // import component
@@ -19,20 +19,20 @@ const Home = () => {
   const deleteProduct = (id) => {
     navigate('/delete')
     setDeleteId(id);
-  
   }
+
 
   return (
     <>
       <Title title={"Dashboard"} />
       <div className='container home-table'>
-        <div className="new-product">Add Product</div>
+        <Link to='/create' className="new-product">Add Product</Link>
         {
           products.length === 0 ? <h1>No Products</h1>:
           products.map((item, index)=>(
             <div className="home-item" key={item.id}>
               <div className="home-item-img">
-                <img src={`${baseUrl}product/${item.id}/photo/${item.id * 2}`} alt={item.name} />
+                <img src={`${baseUrl}product/${item.id}/photo/${item.id * 2 - 1}`} alt={item.name} />
               </div>
               <div className="home-item-title">{item.name}</div>
               <div className="home-item-price">${item.priceList[0].realPrice}</div>

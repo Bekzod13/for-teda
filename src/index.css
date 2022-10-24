@@ -236,3 +236,50 @@ nav{
 .home-item-edit:hover{
   box-shadow: 0 0 8px 1px var(--green);
 }
+
+/* delete */
+.delete{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.7);
+}
+.delete-box{
+  width: 300px;
+  border-radius: 4px;
+  background: var(--white);
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset var(--shd);
+}
+.delete-actions{
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.delete-confirm{
+  width: 100px;
+  height: 35px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shd);
+  cursor: pointer;
+  transition: .3s;
+}
+.delete-confirm.cencel:hover{
+  background: var(--green);
+  color: #fff;
+}
+.delete-confirm.delete-btn:hover{
+  background: var(--red);
+  color: #fff;
+}
